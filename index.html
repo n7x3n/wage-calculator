@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="n7x3n">
+    <title>Mzdová kalkulačka</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+</head>
+<body>
+    <header><h1>Mzdová kalkulačka</h1></header>
+    <main>
+        <h2>Inputy</h2>
+        <div>
+            <label for="worked_hours">Odpracované hodiny</label>
+            <input type="number" id="worked_hours">
+        </div>
+        <div>
+            <label for="hourly_rate">Hodinový tarif</label>
+            <input type="number" id="hourly_rate">
+        </div>
+        <button type="button" id="calc_btn">Spočítat</button>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Položka</th>
+                    <th>Hodnota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>výsledek</td>
+                    <td id="zakladova_mzda">0 Kč</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy;2026, n7x3n</p>
+    </footer>
+    <script src="calculator.js"></script>
+</body>
+</html>
