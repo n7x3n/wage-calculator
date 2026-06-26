@@ -21,6 +21,22 @@ def tax_not_discounted(base, tax_percentage):
 def discount(payer, invalidity_1, invalidity_2, ztp):
     total_discount = payer + invalidity_1 + invalidity_2 + ztp
     return total_discount
+def multiple_kids_count(kids):
+    benefit = 5447 + (kids - 3) * 2320
+    return benefit
+def tax_after_discount(base, discounts):
+    discounted = base - discounts
+    if discounted < 0:
+        discounted = 0
+    else:
+        discounted = discounted
+    return discounted
+def tax_after_benefit(discounted, benefit):
+    final = discounted - benefit
+    return final
+def take_home_pay(gross, health, social, tax):
+    net = gross - health - social - tax
+    return net
 ####
 vacation_money = 0
 true_reward = 0
@@ -86,7 +102,7 @@ tax_base = rounding_hundreds(gross_wage)
 tax_percentage = 0.15
 tax_before_discounts = tax_not_discounted(tax_base, tax_percentage)
 
-#slevy
+# slevy
 tax_payer = 0
 invalidity_1_2 = 0
 invalidity_3 = 0
@@ -111,6 +127,52 @@ else:
     print("Dobře, přeskakuju")
 discounts = discount(tax_payer, invalidity_1_2, invalidity_3, ztp)
 
+# daňové zvýhodnění
+tax_benefit = 0
+tax_benefits_bool = input("Máte daňové zvýhodnění? (ano/ne) ")
+if tax_benefits_bool == "ano":
+    kids_count = int(input("Kolik máte dětí? "))
+    if kids_count == 1:
+        tax_benefit = 1267
+    elif kids_count == 2:
+        tax_benefit = 3127
+    elif kids_count == 3:
+        tax_benefit = 5447
+    elif kids_count > 3:
+        tax_benefit = multiple_kids_count(kids_count)
+elif tax_benefits_bool == "ne":
+    print("Dobře, přeskakuju.")
+else:
+    print("Tento výraz neznám. Počítám s výchozí hodnotou 0")
+# daň po slevách
+tax_after_discount_checked = 0
+tax_bonus = 0
+
+tax_discount_only = tax_after_discount(tax_before_discounts, discounts)
+tax_with_benefits = tax_after_benefit(tax_discount_only, tax_benefit)
+
+if tax_with_benefits < 0:
+    tax_bonus = abs(tax_with_benefits)
+else:
+    tax_after_discount_checked = tax_with_benefits
+
+
+# čistá mzda
+net_pay = take_home_pay(gross_wage, health_insurance, social_insurance, tax_after_discount_checked)
+
+# doplatek
+supplement = net_pay + tax_bonus
+
+
+# zaměstnavatel pojištění
+employer_health_percentage = 0.09
+employer_social_percentage = 0.248
+employer_health_insurance = insurance_math(gross_wage, employer_health_percentage)
+employer_social_insurance = insurance_math(gross_wage, employer_social_percentage)
+
+
+
+
 print("==========VÝPIS VŠECH POTŘEBNÝCH INFORMACÍ==========")
 print("Základová mzda: "+str(worked_money))
 print("Náhrady mzdy: "+str(vacation_money))
@@ -122,4 +184,12 @@ print("Sociální pojištění: "+str(social_insurance))
 print("Základ daně: "+str(tax_base))
 print("Daň před slevami: "+str(tax_before_discounts))
 print("Slevy: "+str(discounts))
+print("Daňové zvýhodnění: "+str(tax_benefit))
+print("Daň po slevách: "+str(tax_after_discount_checked))
+print("Čistá mzda: "+str(net_pay))
+print("Daňový bonus: "+str(tax_bonus))
+print("Doplatek k výplatě: "+str(supplement))
+print("==================================")
+print("Zdravotní pojištění zaměstnavatel: "+str(employer_health_insurance))
+print("Sociální pojištění zaměstnavatel: "+str(employer_social_insurance))
 print("====================================================")
