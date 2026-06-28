@@ -14,14 +14,24 @@ function rounding_hundreds(unrounded){
     rounded = Math.ceil(unrounded / 100) * 100;
     return rounded;
 }
+function discount(payer, invalidity_1, invalidity_2, ztp){
+    total_discount = payer + invalidity_1 + invalidity_2 + ztp;
+    return total_discount;
+}
 const hoursInput = document.getElementById("worked_hours");
 const rateInput = document.getElementById("hourly_rate");
 const vacHoursInput = document.getElementById("vacation_hours");
 const vacRateInput = document.getElementById("vacation_rate");
 const rewardInput = document.getElementById("rewards");
-const health_percent = 0.045
-const social_percent = 0.071
-const tax_percent = 0.15
+//předdefinované hodnoty
+const health_percent = 0.045;
+const social_percent = 0.071;
+const tax_percent = 0.15;
+//
+const payerInput = document.getElementById("payer");
+const inv1_2Input = document.getElementById("inv1_2");
+const inv3Input = document.getElementById("inv3");
+const ztpInput = document.getElementById("ztp");
 const premiumInput = document.getElementById("premium_percentage");
 const calc_button = document.getElementById("calc_btn");
 
@@ -39,14 +49,30 @@ calc_button.addEventListener('click', () =>{
         reward = reward
     }
     let premium = parseInt(premiumInput.value) || 0;
-    premium = premium / 100;
-    let true_premium = insurance_math(zakl_mzda, premium) || 0;
+    let true_premium = premie(zakl_mzda, premium) || 0;
     let reward_premium = true_premium + reward || 0;
     let grosswage = zakl_mzda + vacation + reward_premium;
     let health_insur = insurance_math(grosswage, health_percent) || 0;
     let social_insur = insurance_math(grosswage, social_percent) || 0;
     let tax_base = rounding_hundreds(grosswage) || 0;
     let basic_tax = insurance_math(tax_base, tax_percent) || 0;
+    let tax_payer = 0;
+    let invalidity_1_2 = 0;
+    let invalidity_3 = 0;
+    let ztp = 0;
+    if (payerInput.checked){
+        tax_payer = 2570;
+    }
+    if (inv1_2Input.checked){
+        invalidity_1_2 = 210;
+    }
+    if (inv3Input.checked){
+        invalidity_3 = 420;
+    }
+    if (ztpInput.checked) {
+        ztp = 1345;
+    }
+    let discounts = discount(tax_payer, invalidity_1_2, invalidity_3, ztp) || 0;
     document.getElementById('zakladova_mzda').innerText = zakl_mzda + " Kč";
     document.getElementById('nahrady_mzdy').innerText = vacation + " Kč";
     document.getElementById('premie_odmeny').innerText = reward_premium + " Kč";
@@ -55,4 +81,5 @@ calc_button.addEventListener('click', () =>{
     document.getElementById('soc_poj').innerText = social_insur + " Kč";
     document.getElementById('zakl_dan').innerText = tax_base + " Kč";
     document.getElementById('dan_pr_slev').innerText = basic_tax + " Kč";
+    document.getElementById('slevy').innerText = discounts + " Kč";
 });
