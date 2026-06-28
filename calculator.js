@@ -18,6 +18,10 @@ function discount(payer, invalidity_1, invalidity_2, ztp){
     total_discount = payer + invalidity_1 + invalidity_2 + ztp;
     return total_discount;
 }
+function multiple_kids_count(kids){
+    benefit = 5447 + (kids - 3) * 2320;
+    return benefit;
+}
 const hoursInput = document.getElementById("worked_hours");
 const rateInput = document.getElementById("hourly_rate");
 const vacHoursInput = document.getElementById("vacation_hours");
@@ -33,6 +37,7 @@ const inv1_2Input = document.getElementById("inv1_2");
 const inv3Input = document.getElementById("inv3");
 const ztpInput = document.getElementById("ztp");
 const premiumInput = document.getElementById("premium_percentage");
+const benefitInput = document.getElementById("tax_benefits");
 const calc_button = document.getElementById("calc_btn");
 
 calc_button.addEventListener('click', () =>{
@@ -73,6 +78,18 @@ calc_button.addEventListener('click', () =>{
         ztp = 1345;
     }
     let discounts = discount(tax_payer, invalidity_1_2, invalidity_3, ztp) || 0;
+    let benefit = 0;
+    let kids_count = parseInt(benefitInput.value) || 0;
+    if (kids_count == 1) {
+        benefit = 1267;
+    } else if (kids_count == 2) {
+        benefit = 3127;
+    } else if (kids_count == 3) {
+        benefit = 5447;
+    } else if (kids_count > 3) {
+        benefit = multiple_kids_count(kids_count);
+    }
+    document.getElementById('dan_zvyh').innerText = benefit + " Kč";
     document.getElementById('zakladova_mzda').innerText = zakl_mzda + " Kč";
     document.getElementById('nahrady_mzdy').innerText = vacation + " Kč";
     document.getElementById('premie_odmeny').innerText = reward_premium + " Kč";
