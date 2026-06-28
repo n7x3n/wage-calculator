@@ -19,6 +19,22 @@
             <label for="hourly_rate">Hodinový tarif</label>
             <input type="number" id="hourly_rate">
         </div>
+        <div>
+            <label for="vacation_hours">Dovolená - hodiny</label>
+            <input type="number" id="vacation_hours">
+        </div>
+        <div>
+            <label for="vacation_rate">Dovolená - hodinový tarif</label>
+            <input type="number" id="vacation_rate">
+        </div>
+        <div>
+            <label for="rewards">Odměny</label>
+            <input type="number" id="rewards" min="0">
+        </div>
+        <div>
+            <label for="premium_percentage">Prémie (%)</label>
+            <input type="number" id="premium_percentage" min="0" max="100"> 
+        </div>
         <button type="button" id="calc_btn">Spočítat</button>
         <table border="1">
             <thead>
@@ -29,8 +45,68 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>výsledek</td>
+                    <td>Základová mzda</td>
                     <td id="zakladova_mzda">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Náhrady mzdy</td>
+                    <td id="nahrady_mzdy">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Prémie a odměny</td>
+                    <td id="premie_odmeny">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Hrubá mzda</td>
+                    <td id="hruba_mzda">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Zdravotní pojištění</td>
+                    <td id="zdrav_poj">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Sociální pojištění</td>
+                    <td id="soc_poj">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Základ daně</td>
+                    <td id="zakl_dan">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Daň před slevami</td>
+                    <td id="dan_pr_slev">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Slevy</td>
+                    <td id="slevy">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Daňové zvýhodnění</td>
+                    <td id="dan_zvyh">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Daň po slevách</td>
+                    <td id="dan_po_slev">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Čistá mzda</td>
+                    <td id="cis_mzda">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Daňový bonus</td>
+                    <td id="dan_bon">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Doplatek k výplatě</td>
+                    <td id="dop_vyp">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Zdravotní pojištění zaměstnavatel</td>
+                    <td id="zdrav_poj_zam">0 Kč</td>
+                </tr>
+                <tr>
+                    <td>Sociální pojištění zaměstnavatel</td>
+                    <td id="soc_poj_zam">0 Kč</td>
                 </tr>
             </tbody>
         </table>
