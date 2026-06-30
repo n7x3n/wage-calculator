@@ -1,26 +1,43 @@
-function money_made(hours, hourly_rate){
+function money_made(hours, hourly_rate) {
     let calculated_money = hours * hourly_rate;
     return Math.ceil(calculated_money);
 }
-function premie(money, percentage){
-    reward = money * (percentage/100);
+function premie(money, percentage) {
+    reward = money * (percentage / 100);
     return Math.ceil(reward);
 }
-function insurance_math(money, percentage){
+function insurance_math(money, percentage) {
     insurance = money * percentage;
     return Math.ceil(insurance);
 }
-function rounding_hundreds(unrounded){
+function rounding_hundreds(unrounded) {
     rounded = Math.ceil(unrounded / 100) * 100;
     return rounded;
 }
-function discount(payer, invalidity_1, invalidity_2, ztp){
+function discount(payer, invalidity_1, invalidity_2, ztp) {
     total_discount = payer + invalidity_1 + invalidity_2 + ztp;
     return total_discount;
 }
-function multiple_kids_count(kids){
+function multiple_kids_count(kids) {
     benefit = 5447 + (kids - 3) * 2320;
     return benefit;
+}
+function tax_after_discount(base, discounts) {
+    discounted = base - discounts;
+    if (discounted < 0) {
+        discounted = 0;
+    } else {
+        discounted = discounted;
+    }
+    return discounted;
+}
+function tax_after_benefit(discounted, benefit) {
+    final = discounted - benefit;
+    return final;
+}
+function take_home_pay(gross, health, social, tax) {
+    net = gross - health - social - tax;
+    return net;
 }
 const hoursInput = document.getElementById("worked_hours");
 const rateInput = document.getElementById("hourly_rate");
@@ -31,6 +48,8 @@ const rewardInput = document.getElementById("rewards");
 const health_percent = 0.045;
 const social_percent = 0.071;
 const tax_percent = 0.15;
+const emp_health_per = 0.09;
+const emp_soc_per = 0.248;
 //
 const payerInput = document.getElementById("payer");
 const inv1_2Input = document.getElementById("inv1_2");
@@ -40,7 +59,7 @@ const premiumInput = document.getElementById("premium_percentage");
 const benefitInput = document.getElementById("tax_benefits");
 const calc_button = document.getElementById("calc_btn");
 
-calc_button.addEventListener('click', () =>{
+calc_button.addEventListener('click', () => {
     let hours = parseInt(hoursInput.value) || 0;
     let rate = parseFloat(rateInput.value) || 0;
     let zakl_mzda = money_made(hours, rate);
@@ -65,13 +84,13 @@ calc_button.addEventListener('click', () =>{
     let invalidity_1_2 = 0;
     let invalidity_3 = 0;
     let ztp = 0;
-    if (payerInput.checked){
+    if (payerInput.checked) {
         tax_payer = 2570;
     }
-    if (inv1_2Input.checked){
+    if (inv1_2Input.checked) {
         invalidity_1_2 = 210;
     }
-    if (inv3Input.checked){
+    if (inv3Input.checked) {
         invalidity_3 = 420;
     }
     if (ztpInput.checked) {
@@ -89,6 +108,20 @@ calc_button.addEventListener('click', () =>{
     } else if (kids_count > 3) {
         benefit = multiple_kids_count(kids_count);
     }
+    let discounted_tax = tax_after_discount(basic_tax, discounts);
+    let final_tax = tax_after_benefit(discounted_tax, benefit);
+    let final_tax_checked = 0;
+    let tax_bonus = 0;
+    if (final_tax < 0) {
+        tax_bonus = -final_tax;
+        final_tax_checked = 0;
+    } else {
+        final_tax_checked = final_tax;
+    }
+    let net_pay = take_home_pay(grosswage, health_insur, social_insur, final_tax_checked);
+    let supplement = net_pay + tax_bonus;
+    let emp_health_insur = insurance_math(grosswage, emp_health_per);
+    let emp_soc_insur = insurance_math(grosswage, emp_soc_per);
     document.getElementById('dan_zvyh').innerText = benefit + " Kč";
     document.getElementById('zakladova_mzda').innerText = zakl_mzda + " Kč";
     document.getElementById('nahrady_mzdy').innerText = vacation + " Kč";
@@ -99,4 +132,11 @@ calc_button.addEventListener('click', () =>{
     document.getElementById('zakl_dan').innerText = tax_base + " Kč";
     document.getElementById('dan_pr_slev').innerText = basic_tax + " Kč";
     document.getElementById('slevy').innerText = discounts + " Kč";
+    document.getElementById('dan_zvyh').innerText = benefit + " Kč";
+    document.getElementById('dan_po_slev').innerText = final_tax_checked + " Kč";
+    document.getElementById('cis_mzda').innerText = net_pay + " Kč";
+    document.getElementById('dan_bon').innerText = tax_bonus + " Kč";
+    document.getElementById('dop_vyp').innerText = supplement + " Kč";
+    document.getElementById('zdrav_poj_zam').innerText = emp_health_insur + " Kč";
+    document.getElementById('soc_poj_zam').innerText = emp_soc_insur + " Kč";
 });
