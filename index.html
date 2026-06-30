@@ -6,56 +6,63 @@
     <meta name="author" content="n7x3n">
     <title>Mzdová kalkulačka</title>
     <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header><h1>Mzdová kalkulačka</h1></header>
+    <hr>
     <main>
         <h2>Inputy</h2>
-        <div>
-            <label for="worked_hours">Odpracované hodiny</label>
+        <h3>Odpracováno</h3>
+        <div class="inputs">
+            <label for="worked_hours">Hodiny</label>
             <input type="number" id="worked_hours">
         </div>
-        <div>
+        <div class="inputs">
             <label for="hourly_rate">Hodinový tarif</label>
             <input type="number" id="hourly_rate">
         </div>
-        <div>
-            <label for="vacation_hours">Dovolená - hodiny</label>
+        <h3>Dovolená</h3>
+        <div class="inputs">
+            <label for="vacation_hours">Hodiny</label>
             <input type="number" id="vacation_hours">
         </div>
-        <div>
-            <label for="vacation_rate">Dovolená - hodinový tarif</label>
+        <div class="inputs">
+            <label for="vacation_rate">Hodinový tarif</label>
             <input type="number" id="vacation_rate">
         </div>
-        <div>
+        <h3>Odměny a Prémie</h3>
+        <div class="inputs">
             <label for="rewards">Odměny</label>
             <input type="number" id="rewards" min="0">
         </div>
-        <div>
+        <div class="inputs">
             <label for="premium_percentage">Prémie (%)</label>
             <input type="number" id="premium_percentage" min="0" max="100"> 
         </div>
         <h3>Slevy na daních</h3>
         <div>
-            <label ><input type="checkbox" id="payer">Poplatník</label>
+            <label class="check-text"><input type="checkbox" id="payer">Poplatník</label>
         </div>
         <div>
-            <label ><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
+            <label class="check-text"><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
         </div>
         <div>
-            <label ><input type="checkbox" id="inv3">invalidita 3. stupně</label>
+            <label class="check-text"><input type="checkbox" id="inv3">invalidita 3. stupně</label>
         </div>
         <div>
-            <label ><input type="checkbox" id="ztp">ZTP/P</label>
+            <label class="check-text"><input type="checkbox" id="ztp">ZTP/P</label>
         </div>
+        <h3>Daňové zvýhodnění</h3>
         <div>
-            <label for="tax_benefits">Počet dětí</label>
+            <label for="tax_benefits" class="inputs">Počet dětí</label>
             <input type="number" id="tax_benefits" min="0">
         </div>
         <br>
-        <hr>
         <button type="button" id="calc_btn">Spočítat</button>
-        <table border="1">
+        <hr>
+        <h2>Tabulka</h2>
+        <table>
             <thead>
                 <tr>
                     <th>Položka</th>
@@ -120,18 +127,19 @@
                     <td id="dop_vyp">0 Kč</td>
                 </tr>
                 <tr>
-                    <td>Zdravotní pojištění zaměstnavatel</td>
+                    <td>Zdrav. pojištění zaměstnavatel</td>
                     <td id="zdrav_poj_zam">0 Kč</td>
                 </tr>
                 <tr>
-                    <td>Sociální pojištění zaměstnavatel</td>
+                    <td>Soc. pojištění zaměstnavatel</td>
                     <td id="soc_poj_zam">0 Kč</td>
                 </tr>
             </tbody>
         </table>
     </main>
     <footer>
-        <p>&copy;2026, n7x3n</p>
+        <hr>
+        <p style="font-size: 18px;"><em>&copy;2026, n7x3n</em></p>
     </footer>
     <script src="calculator.js"></script>
 </body>
