@@ -1,29 +1,29 @@
 function money_made(hours, hourly_rate) {
-    let calculated_money = hours * hourly_rate;
+    const calculated_money = hours * hourly_rate;
     return Math.ceil(calculated_money);
 }
 function premie(money, percentage) {
-    reward = money * (percentage / 100);
+    const reward = money * (percentage / 100);
     return Math.ceil(reward);
 }
 function insurance_math(money, percentage) {
-    insurance = money * percentage;
+    const insurance = money * percentage;
     return Math.ceil(insurance);
 }
 function rounding_hundreds(unrounded) {
-    rounded = Math.ceil(unrounded / 100) * 100;
+    const rounded = Math.ceil(unrounded / 100) * 100;
     return rounded;
 }
 function discount(payer, invalidity_1, invalidity_2, ztp) {
-    total_discount = payer + invalidity_1 + invalidity_2 + ztp;
+    const total_discount = payer + invalidity_1 + invalidity_2 + ztp;
     return total_discount;
 }
 function multiple_kids_count(kids) {
-    benefit = 5447 + (kids - 3) * 2320;
+    const benefit = 5447 + (kids - 3) * 2320;
     return benefit;
 }
 function tax_after_discount(base, discounts) {
-    discounted = base - discounts;
+    let discounted = base - discounts;
     if (discounted < 0) {
         discounted = 0;
     } else {
@@ -32,11 +32,11 @@ function tax_after_discount(base, discounts) {
     return discounted;
 }
 function tax_after_benefit(discounted, benefit) {
-    final = discounted - benefit;
+    const final = discounted - benefit;
     return final;
 }
 function take_home_pay(gross, health, social, tax) {
-    net = gross - health - social - tax;
+    const net = gross - health - social - tax;
     return net;
 }
 const hoursInput = document.getElementById("worked_hours");
