@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="n7x3n">
     <title>Mzdová kalkulačka</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,20 +20,20 @@
         <h3>Odpracováno</h3>
         <div class="inputs">
             <label for="worked_hours">Hodiny</label>
-            <input type="number" id="worked_hours">
+            <input type="number" id="worked_hours" min="0">
         </div>
         <div class="inputs">
             <label for="hourly_rate">Hodinový tarif</label>
-            <input type="number" id="hourly_rate">
+            <input type="number" id="hourly_rate" min="0">
         </div>
         <h3>Dovolená</h3>
         <div class="inputs">
             <label for="vacation_hours">Hodiny</label>
-            <input type="number" id="vacation_hours">
+            <input type="number" id="vacation_hours" min="0">
         </div>
         <div class="inputs">
             <label for="vacation_rate">Hodinový tarif</label>
-            <input type="number" id="vacation_rate">
+            <input type="number" id="vacation_rate" min="0">
         </div>
         <div class="abs-left">
             <h3>Odměny a Prémie</h3>
