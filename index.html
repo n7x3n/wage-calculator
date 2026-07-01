@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,11 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header><h1>Mzdová kalkulačka</h1></header>
+    <header>
+        <h1>Mzdová kalkulačka</h1>
+    </header>
     <hr>
     <main>
         <h2>Inputy</h2>
@@ -31,32 +35,34 @@
             <label for="vacation_rate">Hodinový tarif</label>
             <input type="number" id="vacation_rate">
         </div>
-        <h3>Odměny a Prémie</h3>
-        <div class="inputs">
-            <label for="rewards">Odměny</label>
-            <input type="number" id="rewards" min="0">
-        </div>
-        <div class="inputs">
-            <label for="premium_percentage">Prémie (%)</label>
-            <input type="number" id="premium_percentage" min="0" max="100"> 
-        </div>
-        <h3>Slevy na daních</h3>
-        <div>
-            <label class="check-text"><input type="checkbox" id="payer">Poplatník</label>
-        </div>
-        <div>
-            <label class="check-text"><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
-        </div>
-        <div>
-            <label class="check-text"><input type="checkbox" id="inv3">invalidita 3. stupně</label>
-        </div>
-        <div>
-            <label class="check-text"><input type="checkbox" id="ztp">ZTP/P</label>
-        </div>
-        <h3>Daňové zvýhodnění</h3>
-        <div>
-            <label for="tax_benefits" class="inputs">Počet dětí</label>
-            <input type="number" id="tax_benefits" min="0">
+        <div class="abs-left">
+            <h3>Odměny a Prémie</h3>
+            <div class="inputs">
+                <label for="rewards">Odměny</label>
+                <input type="number" id="rewards" min="0">
+            </div>
+            <div class="inputs">
+                <label for="premium_percentage">Prémie (%)</label>
+                <input type="number" id="premium_percentage" min="0" max="100">
+            </div>
+            <h3>Slevy na daních</h3>
+            <div>
+                <label class="check-text"><input type="checkbox" id="payer">Poplatník</label>
+            </div>
+            <div>
+                <label class="check-text"><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
+            </div>
+            <div>
+                <label class="check-text"><input type="checkbox" id="inv3">invalidita 3. stupně</label>
+            </div>
+            <div>
+                <label class="check-text"><input type="checkbox" id="ztp">ZTP/P</label>
+            </div>
+            <h3>Daňové zvýhodnění</h3>
+            <div>
+                <label for="tax_benefits" class="inputs">Počet dětí</label>
+                <input type="number" id="tax_benefits" min="0">
+            </div>
         </div>
         <br>
         <button type="button" id="calc_btn">Spočítat</button>
@@ -65,8 +71,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>Položka</th>
-                    <th>Hodnota</th>
+                    <th class="th-left">Položka</th>
+                    <th class="th-left">Hodnota</th>
                 </tr>
             </thead>
             <tbody>
@@ -143,4 +149,5 @@
     </footer>
     <script src="calculator.js"></script>
 </body>
+
 </html>
