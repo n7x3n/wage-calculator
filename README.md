@@ -1,7 +1,7 @@
-# mzdová kalkulačka (wage-calculator)
+# Mzdová kalkulačka (wage-calculator)
 - Jednoduchá, čistá, mzdová kalkulačka zaměřená na českou legislativu
 - inspirace: hodiny ekonomiky v prvním ročníku střední školy =)
-## funkce
+## Funkce
 -   **Výpočet základní mzdy:** Výpočet z odpracovaných hodin a hodinového tarifu.
 -   **Náhrady mzdy:** Výpočet dovolené (hodiny a sazba).
 -   **Odměny a prémie:** Možnost zadat fixní odměny v Kč a procentuální prémie ze mzdy.
@@ -13,14 +13,14 @@
 -   **Daňové zvýhodnění na děti:** Výpočet slevy na děti s progresivní sazbou (1. dítě, 2. dítě, 3. i další děti) včetně automatického výpočtu **daňového bonusu**
 
 ## Použité technologie
-Tento projekt má dvě erze:
+Tento projekt má dvě verze:
     1. **Prototyp (terminálová verze)**
         - **Python**
     2. **Webová verze**
         - **HTML**
         - **CSS**
         - **JavaScript**
-## jak projekt spustit
+## Jak projekt spustit
 ### Terminálová verze
 - stáhněte si soubor calculator.py a poté spusťte pomocí příkazu:
 ```bash
