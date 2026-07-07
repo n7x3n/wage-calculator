@@ -11,19 +11,15 @@ def discount(payer, invalidity_1, invalidity_2, ztp):
 def multiple_kids_count(kids):
     return 5447 + (kids - 3) * 2320
 def tax_after_discount(base, discounts):
-    discounted = base - discounts
-    if discounted < 0:
-        discounted = 0
-    return discounted
+    return max(0, base - discounts)
 def tax_after_benefit(discounted, benefit):
     return discounted - benefit
 def take_home_pay(gross, health, social, tax):
     return gross - health - social - tax
-####
+
 vacation_money = 0
 true_reward = 0
-####
-####
+
 print("Ahoj. Tohle je mzdová kalkulačka. Postupně mi budete psát hodnoty a já Váma na konci spočítám celý výpis.")
 worked_choice = input("Mám počítat podle 1) měsíčního platu nebo 2)podle hodinového mzdového tarifu?(1 nebo 2) ")
 if worked_choice == "1":
@@ -41,10 +37,8 @@ else:
     worked_hours = int(input("Kolik hodin jste odpracoval/a?(hod) "))
     basic_hourly_rate = float(input("Jakou máte hodinovou mzdu? (Kč/hod) "))
 
-
 worked_money = multi(worked_hours, basic_hourly_rate)
 print("Základová mzda je "+str(worked_money)+" Kč")
-# po tento pod to funguje =)
 
 vacation = input("Byl/a jste na dovolené?(ano/ne) ").lower()
 if vacation == "ano":
@@ -73,16 +67,13 @@ else:
 
 gross_wage = worked_money+vacation_money+true_reward
 
-health_worker_percentage = 0.045
-health_insurance = multi(gross_wage, health_worker_percentage)
+health_insurance = multi(gross_wage, 0.045)
 
-social_worker_percentage = 0.071
-social_insurance = multi(gross_wage, social_worker_percentage)
+social_insurance = multi(gross_wage, 0.071)
 
 tax_base = rounding_hundreds(gross_wage)
 
-tax_percentage = 0.15
-tax_before_discounts = multi(tax_base, tax_percentage)
+tax_before_discounts = multi(tax_base,0.15)
 
 # slevy
 tax_payer = 0
@@ -138,40 +129,33 @@ if tax_with_benefits < 0:
 else:
     tax_after_discount_checked = tax_with_benefits
 
-
 # čistá mzda
 net_pay = take_home_pay(gross_wage, health_insurance, social_insurance, tax_after_discount_checked)
 
 # doplatek
 supplement = net_pay + tax_bonus
 
-
 # zaměstnavatel pojištění
-employer_health_percentage = 0.09
-employer_social_percentage = 0.248
-employer_health_insurance = multi(gross_wage, employer_health_percentage)
-employer_social_insurance = multi(gross_wage, employer_social_percentage)
-
-
-
+employer_health_insurance = multi(gross_wage, 0.09)
+employer_social_insurance = multi(gross_wage, 0.248)
 
 print("==========VÝPIS VŠECH POTŘEBNÝCH INFORMACÍ==========")
-print("Základová mzda: "+str(worked_money))
-print("Náhrady mzdy: "+str(vacation_money))
-print("Prémie a odměny: "+str(true_reward))
+print(f"Základová mzda: {worked_money}")
+print(f"Náhrady mzdy: {vacation_money}")
+print(f"Prémie a odměny: {true_reward}")
 print("==================================")
-print("Hrubá mzda: "+str(gross_wage))
-print("Zdravotní pojištění: "+str(health_insurance))
-print("Sociální pojištění: "+str(social_insurance))
-print("Základ daně: "+str(tax_base))
-print("Daň před slevami: "+str(tax_before_discounts))
-print("Slevy: "+str(discounts))
-print("Daňové zvýhodnění: "+str(tax_benefit))
-print("Daň po slevách: "+str(tax_after_discount_checked))
-print("Čistá mzda: "+str(net_pay))
-print("Daňový bonus: "+str(tax_bonus))
-print("Doplatek k výplatě: "+str(supplement))
+print(f"Hrubá mzda: {gross_wage}")
+print(f"Zdravotní pojištění: {health_insurance}")
+print(f"Sociální pojištění: {social_insurance}")
+print(f"Základ daně: {tax_base}")
+print(f"Daň před slevami: {tax_before_discounts}")
+print(f"Slevy: {discounts}")
+print(f"Daňové zvýhodnění: {tax_benefit}")
+print(f"Daň po slevách: {tax_after_discount_checked}")
+print(f"Čistá mzda: {net_pay}")
+print(f"Daňový bonus: {tax_bonus}")
+print(f"Doplatek k výplatě: {supplement}")
 print("==================================")
-print("Zdravotní pojištění zaměstnavatel: "+str(employer_health_insurance))
-print("Sociální pojištění zaměstnavatel: "+str(employer_social_insurance))
+print(f"Zdravotní pojištění zaměstnavatel: {employer_health_insurance}")
+print(f"Sociální pojištění zaměstnavatel: {employer_social_insurance}")
 print("====================================================")
