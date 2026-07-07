@@ -1,36 +1,24 @@
 import math
 
 def multi(factor1, factor2):
-    product = factor1 * factor2
-    return math.ceil(product)
+    return math.ceil(factor1 * factor2)
 def hourly_rate(month_hours, monthly_pay):
-    calculated_rate = monthly_pay / month_hours
-    return calculated_rate
-def premie(money, percentage):
-    reward = money * (percentage/100)
-    return math.ceil(reward)
+    return monthly_pay / month_hours
 def rounding_hundreds(unrounded):
-    rounded = math.ceil(unrounded / 100) * 100
-    return rounded
+    return math.ceil(unrounded / 100) * 100
 def discount(payer, invalidity_1, invalidity_2, ztp):
-    total_discount = payer + invalidity_1 + invalidity_2 + ztp
-    return total_discount
+    return payer + invalidity_1 + invalidity_2 + ztp
 def multiple_kids_count(kids):
-    benefit = 5447 + (kids - 3) * 2320
-    return benefit
+    return 5447 + (kids - 3) * 2320
 def tax_after_discount(base, discounts):
     discounted = base - discounts
     if discounted < 0:
         discounted = 0
-    else:
-        discounted = discounted
     return discounted
 def tax_after_benefit(discounted, benefit):
-    final = discounted - benefit
-    return final
+    return discounted - benefit
 def take_home_pay(gross, health, social, tax):
-    net = gross - health - social - tax
-    return net
+    return gross - health - social - tax
 ####
 vacation_money = 0
 true_reward = 0
@@ -75,7 +63,7 @@ if rewards == "ano":
         true_reward = int(input("Kolik bylo v odměnách? ") .replace(" ", ""))
     elif rewards_type == "2":
         rewards_percentage = int(input("Kolik procent ze mzdy?(%) "))
-        true_reward = premie(worked_money, rewards_percentage)
+        true_reward = multi(worked_money, rewards_percentage / 100)
     else:
         print("Neznám, pokračuju s nulovou odměnou/prémií")
 elif rewards == "ne":
