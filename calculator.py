@@ -1,23 +1,17 @@
 import math
 
-def money_made(hours, hourly_rate):
-    calculated_money = hours * hourly_rate
-    return math.ceil(calculated_money)
+def multi(factor1, factor2):
+    product = factor1 * factor2
+    return math.ceil(product)
 def hourly_rate(month_hours, monthly_pay):
     calculated_rate = monthly_pay / month_hours
     return calculated_rate
 def premie(money, percentage):
     reward = money * (percentage/100)
     return math.ceil(reward)
-def insurance_math(money, percentage):
-    insurance = money * percentage
-    return math.ceil(insurance)
 def rounding_hundreds(unrounded):
     rounded = math.ceil(unrounded / 100) * 100
     return rounded
-def tax_not_discounted(base, tax_percentage):
-    tax_without_discount = base * tax_percentage
-    return math.ceil(tax_without_discount)
 def discount(payer, invalidity_1, invalidity_2, ztp):
     total_discount = payer + invalidity_1 + invalidity_2 + ztp
     return total_discount
@@ -60,7 +54,7 @@ else:
     basic_hourly_rate = float(input("Jakou máte hodinovou mzdu? (Kč/hod) "))
 
 
-worked_money = money_made(worked_hours, basic_hourly_rate)
+worked_money = multi(worked_hours, basic_hourly_rate)
 print("Základová mzda je "+str(worked_money)+" Kč")
 # po tento pod to funguje =)
 
@@ -68,7 +62,7 @@ vacation = input("Byl/a jste na dovolené?(ano/ne) ").lower()
 if vacation == "ano":
     vacation_hours = int(input("Kolik hodin? "))
     vacation_hourly_rate = float(input("Jaká je Vaše náhradová mzda?(Kč/hod) "))
-    vacation_money = money_made(vacation_hours, vacation_hourly_rate)
+    vacation_money = multi(vacation_hours, vacation_hourly_rate)
 elif vacation == "ne":
     print("Dobře, přeskakuju.")
 else:
@@ -92,15 +86,15 @@ else:
 gross_wage = worked_money+vacation_money+true_reward
 
 health_worker_percentage = 0.045
-health_insurance = insurance_math(gross_wage, health_worker_percentage)
+health_insurance = multi(gross_wage, health_worker_percentage)
 
 social_worker_percentage = 0.071
-social_insurance = insurance_math(gross_wage, social_worker_percentage)
+social_insurance = multi(gross_wage, social_worker_percentage)
 
 tax_base = rounding_hundreds(gross_wage)
 
 tax_percentage = 0.15
-tax_before_discounts = tax_not_discounted(tax_base, tax_percentage)
+tax_before_discounts = multi(tax_base, tax_percentage)
 
 # slevy
 tax_payer = 0
@@ -167,8 +161,8 @@ supplement = net_pay + tax_bonus
 # zaměstnavatel pojištění
 employer_health_percentage = 0.09
 employer_social_percentage = 0.248
-employer_health_insurance = insurance_math(gross_wage, employer_health_percentage)
-employer_social_insurance = insurance_math(gross_wage, employer_social_percentage)
+employer_health_insurance = multi(gross_wage, employer_health_percentage)
+employer_social_insurance = multi(gross_wage, employer_social_percentage)
 
 
 
