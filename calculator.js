@@ -1,56 +1,33 @@
-function money_made(hours, hourly_rate) {
-    const calculated_money = hours * hourly_rate;
-    return Math.ceil(calculated_money);
-}
-function premie(money, percentage) {
-    const reward = money * (percentage / 100);
-    return Math.ceil(reward);
-}
-function insurance_math(money, percentage) {
-    const insurance = money * percentage;
-    return Math.ceil(insurance);
+function multi(factor1, factor2) {
+    return Math.ceil(factor1 * factor2);
 }
 function rounding_hundreds(unrounded) {
-    const rounded = Math.ceil(unrounded / 100) * 100;
-    return rounded;
+    return Math.ceil(unrounded / 100) * 100;
 }
 function discount(payer, invalidity_1, invalidity_2, ztp) {
-    const total_discount = payer + invalidity_1 + invalidity_2 + ztp;
-    return total_discount;
+    return payer + invalidity_1 + invalidity_2 + ztp;
 }
 function multiple_kids_count(kids) {
-    const benefit = 5447 + (kids - 3) * 2320;
-    return benefit;
+    return 5447 + (kids - 3) * 2320;
 }
 function tax_after_discount(base, discounts) {
     let discounted = base - discounts;
     if (discounted < 0) {
         discounted = 0;
-    } else {
-        discounted = discounted;
     }
     return discounted;
 }
 function tax_after_benefit(discounted, benefit) {
-    const final = discounted - benefit;
-    return final;
+    return discounted - benefit;
 }
 function take_home_pay(gross, health, social, tax) {
-    const net = gross - health - social - tax;
-    return net;
+    return gross - health - social - tax;
 }
 const hoursInput = document.getElementById("worked_hours");
 const rateInput = document.getElementById("hourly_rate");
 const vacHoursInput = document.getElementById("vacation_hours");
 const vacRateInput = document.getElementById("vacation_rate");
 const rewardInput = document.getElementById("rewards");
-//předdefinované hodnoty
-const health_percent = 0.045;
-const social_percent = 0.071;
-const tax_percent = 0.15;
-const emp_health_per = 0.09;
-const emp_soc_per = 0.248;
-//
 const payerInput = document.getElementById("payer");
 const inv1_2Input = document.getElementById("inv1_2");
 const inv3Input = document.getElementById("inv3");
@@ -62,10 +39,10 @@ const calc_button = document.getElementById("calc_btn");
 calc_button.addEventListener('click', () => {
     let hours = parseInt(hoursInput.value) || 0;
     let rate = parseFloat(rateInput.value) || 0;
-    let zakl_mzda = money_made(hours, rate);
+    let base_pay = multi(hours, rate);
     let vacHours = parseInt(vacHoursInput.value) || 0;
     let vacRate = parseFloat(vacRateInput.value) || 0;
-    let vacation = money_made(vacHours, vacRate);
+    let vacation = multi(vacHours, vacRate);
     let reward = parseInt(rewardInput.value) || 0;
     if (reward <= 0) {
         reward = 0
@@ -73,13 +50,13 @@ calc_button.addEventListener('click', () => {
         reward = reward
     }
     let premium = parseInt(premiumInput.value) || 0;
-    let true_premium = premie(zakl_mzda, premium) || 0;
+    let true_premium = multi(base_pay, premium / 100) || 0;
     let reward_premium = true_premium + reward || 0;
-    let grosswage = zakl_mzda + vacation + reward_premium;
-    let health_insur = insurance_math(grosswage, health_percent) || 0;
-    let social_insur = insurance_math(grosswage, social_percent) || 0;
+    let grosswage = base_pay + vacation + reward_premium;
+    let health_insur = multi(grosswage, 0.045) || 0;
+    let social_insur = multi(grosswage, 0.071) || 0;
     let tax_base = rounding_hundreds(grosswage) || 0;
-    let basic_tax = insurance_math(tax_base, tax_percent) || 0;
+    let basic_tax = multi(tax_base, 0.15) || 0;
     let tax_payer = 0;
     let invalidity_1_2 = 0;
     let invalidity_3 = 0;
@@ -120,10 +97,10 @@ calc_button.addEventListener('click', () => {
     }
     let net_pay = take_home_pay(grosswage, health_insur, social_insur, final_tax_checked);
     let supplement = net_pay + tax_bonus;
-    let emp_health_insur = insurance_math(grosswage, emp_health_per);
-    let emp_soc_insur = insurance_math(grosswage, emp_soc_per);
+    let emp_health_insur = multi(grosswage, 0.09);
+    let emp_soc_insur = multi(grosswage, 0.248);
     document.getElementById('dan_zvyh').innerText = benefit + " Kč";
-    document.getElementById('zakladova_mzda').innerText = zakl_mzda + " Kč";
+    document.getElementById('zakladova_mzda').innerText = base_pay + " Kč";
     document.getElementById('nahrady_mzdy').innerText = vacation + " Kč";
     document.getElementById('premie_odmeny').innerText = reward_premium + " Kč";
     document.getElementById('hruba_mzda').innerText = grosswage + " Kč";
