@@ -120,11 +120,11 @@ calc_button.addEventListener('click', () => {
     document.getElementById('soc_poj_zam').innerText = emp_soc_insur + " Kč";
 
     document.getElementById('worked-hours-table').innerText = `${hours}`;
-    document.getElementById('hourly-rate-table').innerText = `${rate}`;
+    document.getElementById('hourly-rate-table').innerText = `${rate} Kč/h`;
     document.getElementById('vacation-hours-table').innerText = `${vacHours}`;
-    document.getElementById('vacation-rate-table').innerText = `${vacRate}`;
-    document.getElementById('rewards-table').innerText = `${reward}`;
-    document.getElementById('premium-percentage-table').innerText = `${premium}`;
+    document.getElementById('vacation-rate-table').innerText = `${vacRate} Kč/h`;
+    document.getElementById('rewards-table').innerText = `${reward} Kč`;
+    document.getElementById('premium-percentage-table').innerText = `${premium}%`;
     if (payerInput.checked) {
         document.getElementById('payer-table').innerText = "ano";
     } else {

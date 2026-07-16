@@ -82,9 +82,11 @@ button {
 .th-left {
     text-align: left;
 }
+
 .footer {
     font-size: 18px;
 }
+
 @media (width > 900px) {
     table {
         width: 50%;
@@ -125,22 +127,28 @@ button {
     margin-top: 15px;
     line-height: 1.4;
 }
+
 #exp-btn {
     margin-top: 20px;
 }
+
 .input-table {
     display: none;
 }
-@media print{
+
+@media print {
     .inputfield {
         display: none;
     }
+
     .disclaimer {
         display: none;
     }
+
     .footer {
         display: none;
     }
+
     #exp-btn {
         display: none;
     }
