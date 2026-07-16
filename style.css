@@ -121,11 +121,15 @@ button {
 
 .disclaimer {
     font-size: 11px;
-    /* velmi malé písmo */
     color: #444444;
-    /* tmavě šedá barva, která na černém pozadí splývá */
     margin-top: 15px;
     line-height: 1.4;
+}
+#exp-btn {
+    margin-top: 20px;
+}
+.input-table {
+    display: none;
 }
 @media print{
     .inputfield {
@@ -135,6 +139,9 @@ button {
         display: none;
     }
     .footer {
+        display: none;
+    }
+    #exp-btn {
         display: none;
     }
 }

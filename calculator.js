@@ -35,6 +35,8 @@ const ztpInput = document.getElementById("ztp");
 const premiumInput = document.getElementById("premium_percentage");
 const benefitInput = document.getElementById("tax_benefits");
 const calc_button = document.getElementById("calc_btn");
+const expBtn = document.getElementById('exp-btn');
+const inpTab = document.getElementById('inp-tab');
 
 calc_button.addEventListener('click', () => {
     let hours = parseInt(hoursInput.value) || 0;
@@ -116,4 +118,38 @@ calc_button.addEventListener('click', () => {
     document.getElementById('dop_vyp').innerText = supplement + " Kč";
     document.getElementById('zdrav_poj_zam').innerText = emp_health_insur + " Kč";
     document.getElementById('soc_poj_zam').innerText = emp_soc_insur + " Kč";
+
+    document.getElementById('worked-hours-table').innerText = `${hours}`;
+    document.getElementById('hourly-rate-table').innerText = `${rate}`;
+    document.getElementById('vacation-hours-table').innerText = `${vacHours}`;
+    document.getElementById('vacation-rate-table').innerText = `${vacRate}`;
+    document.getElementById('rewards-table').innerText = `${reward}`;
+    document.getElementById('premium-percentage-table').innerText = `${premium}`;
+    if (payerInput.checked) {
+        document.getElementById('payer-table').innerText = "ano";
+    } else {
+        document.getElementById('payer-table').innerText = "ne";
+    }
+    if (inv1_2Input.checked) {
+        document.getElementById('inv1-2-table').innerText = "ano";
+    } else {
+        document.getElementById('inv1-2-table').innerText = "ne";
+    }
+    if (inv3Input.checked) {
+        document.getElementById('inv3-table').innerText = "ano";
+    } else {
+        document.getElementById('inv3-table').innerText = "ne";
+    }
+    if (ztpInput.checked) {
+        document.getElementById('ztp-table').innerText = "ano";
+    } else {
+        document.getElementById('ztp-table').innerText = "ne";
+    }
+    document.getElementById('tax-benefits-table').innerText = `${kids_count}`;
+});
+
+expBtn.addEventListener('click', () => {
+    inpTab.classList.toggle("input-table");
+    window.print();
+    inpTab.classList.toggle("input-table");
 });
