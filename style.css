@@ -82,7 +82,9 @@ button {
 .th-left {
     text-align: left;
 }
-
+.footer {
+    font-size: 18px;
+}
 @media (width > 900px) {
     table {
         width: 50%;
@@ -124,4 +126,15 @@ button {
     /* tmavě šedá barva, která na černém pozadí splývá */
     margin-top: 15px;
     line-height: 1.4;
+}
+@media print{
+    .inputfield {
+        display: none;
+    }
+    .disclaimer {
+        display: none;
+    }
+    .footer {
+        display: none;
+    }
 }

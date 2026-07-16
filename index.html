@@ -16,57 +16,59 @@
     </header>
     <hr>
     <main>
-        <h2>Inputy</h2>
-        <h3>Odpracováno</h3>
-        <div class="inputs">
-            <label for="worked_hours">Hodiny</label>
-            <input type="number" id="worked_hours" min="0">
-        </div>
-        <div class="inputs">
-            <label for="hourly_rate">Hodinový tarif</label>
-            <input type="number" id="hourly_rate" min="0">
-        </div>
-        <h3>Dovolená</h3>
-        <div class="inputs">
-            <label for="vacation_hours">Hodiny</label>
-            <input type="number" id="vacation_hours" min="0">
-        </div>
-        <div class="inputs">
-            <label for="vacation_rate">Hodinový tarif</label>
-            <input type="number" id="vacation_rate" min="0">
-        </div>
-        <div class="abs-left">
-            <h3>Odměny a Prémie</h3>
+        <div class="inputfield">
+            <h2>Inputy</h2>
+            <h3>Odpracováno</h3>
             <div class="inputs">
-                <label for="rewards">Odměny</label>
-                <input type="number" id="rewards" min="0">
+                <label for="worked_hours">Hodiny</label>
+                <input type="number" id="worked_hours" min="0">
             </div>
             <div class="inputs">
-                <label for="premium_percentage">Prémie (%)</label>
-                <input type="number" id="premium_percentage" min="0" max="100">
+                <label for="hourly_rate">Hodinový tarif</label>
+                <input type="number" id="hourly_rate" min="0">
             </div>
-            <h3>Slevy na daních</h3>
-            <div>
-                <label class="check-text"><input type="checkbox" id="payer">Poplatník</label>
+            <h3>Dovolená</h3>
+            <div class="inputs">
+                <label for="vacation_hours">Hodiny</label>
+                <input type="number" id="vacation_hours" min="0">
             </div>
-            <div>
-                <label class="check-text"><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
+            <div class="inputs">
+                <label for="vacation_rate">Hodinový tarif</label>
+                <input type="number" id="vacation_rate" min="0">
             </div>
-            <div>
-                <label class="check-text"><input type="checkbox" id="inv3">invalidita 3. stupně</label>
+            <div class="abs-left">
+                <h3>Odměny a Prémie</h3>
+                <div class="inputs">
+                    <label for="rewards">Odměny</label>
+                    <input type="number" id="rewards" min="0">
+                </div>
+                <div class="inputs">
+                    <label for="premium_percentage">Prémie (%)</label>
+                    <input type="number" id="premium_percentage" min="0" max="100">
+                </div>
+                <h3>Slevy na daních</h3>
+                <div>
+                    <label class="check-text"><input type="checkbox" id="payer">Poplatník</label>
+                </div>
+                <div>
+                    <label class="check-text"><input type="checkbox" id="inv1_2">invalidita 1. nebo 2. stupně</label>
+                </div>
+                <div>
+                    <label class="check-text"><input type="checkbox" id="inv3">invalidita 3. stupně</label>
+                </div>
+                <div>
+                    <label class="check-text"><input type="checkbox" id="ztp">ZTP/P</label>
+                </div>
+                <h3>Daňové zvýhodnění</h3>
+                <div>
+                    <label for="tax_benefits" class="inputs">Počet dětí</label>
+                    <input type="number" id="tax_benefits" min="0">
+                </div>
             </div>
-            <div>
-                <label class="check-text"><input type="checkbox" id="ztp">ZTP/P</label>
-            </div>
-            <h3>Daňové zvýhodnění</h3>
-            <div>
-                <label for="tax_benefits" class="inputs">Počet dětí</label>
-                <input type="number" id="tax_benefits" min="0">
-            </div>
+            <br>
+            <button type="button" id="calc_btn">Spočítat</button>
+            <hr>
         </div>
-        <br>
-        <button type="button" id="calc_btn">Spočítat</button>
-        <hr>
         <h2>Tabulka</h2>
         <table>
             <thead>
@@ -145,7 +147,7 @@
     </main>
     <footer>
         <hr>
-        <p style="font-size: 18px;"><em>&copy;2026, n7x3n</em></p>
+        <p class="footer"><em>&copy;2026, n7x3n</em></p>
         <p class="disclaimer">
             Upozornění: Tento nástroj slouží výhradně pro studijní účely a testování,
             nikoliv k podvádění v hodinách ekonomiky. Autor v žádném případě nepodporuje ani neschvaluje jeho
