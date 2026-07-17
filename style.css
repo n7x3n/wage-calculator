@@ -152,4 +152,8 @@ button {
     #exp-btn {
         display: none;
     }
+
+    #csv-btn {
+        display: none;
+    }
 }
