@@ -23,6 +23,20 @@ function tax_after_benefit(discounted, benefit) {
 function take_home_pay(gross, health, social, tax) {
     return gross - health - social - tax;
 }
+function csvExport(dataObject){
+    const headers = Object.keys(dataObject).join(";");
+    const values = Object.values(dataObject).join(";");
+    const content = `${headers}\n${values}`;
+    const blob = new Blob([content], {type: "text/csv"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "vypocet-mzdy.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 const hoursInput = document.getElementById("worked_hours");
 const rateInput = document.getElementById("hourly_rate");
 const vacHoursInput = document.getElementById("vacation_hours");
@@ -37,6 +51,8 @@ const benefitInput = document.getElementById("tax_benefits");
 const calc_button = document.getElementById("calc_btn");
 const expBtn = document.getElementById('exp-btn');
 const inpTab = document.getElementById('inp-tab');
+const csvBtn = document.getElementById('csv-btn');
+let csvDataset = null;
 
 calc_button.addEventListener('click', () => {
     let hours = parseInt(hoursInput.value) || 0;
@@ -146,10 +162,48 @@ calc_button.addEventListener('click', () => {
         document.getElementById('ztp-table').innerText = "ne";
     }
     document.getElementById('tax-benefits-table').innerText = `${kids_count}`;
+
+    csvDataset = {
+        odpracovaneHodiny: hours,
+        hodinovyTarif: rate,
+        nahradaHodiny: vacHours,
+        nahradaHodinovyTarif: vacRate,
+        odmeny: reward,
+        premie: true_premium,
+        poplatnik: payerInput.checked ? "ano" : "ne",
+        invalidita1_2: inv1_2Input.checked ? "ano" : "ne",
+        invalidita3: inv3Input.checked ? "ano" : "ne",
+        ztp: ztpInput.checked ? "ano" : "ne",
+        pocetDeti: kids_count,
+        zakladovaMzda: base_pay,
+        nahradyMzdy: vacation,
+        premieOdmeny: reward_premium,
+        hrubaMzda: grosswage,
+        zdravotniPojisteni: health_insur,
+        socialniPojisteni: social_insur,
+        zakladDane: tax_base,
+        danPredSlevami: basic_tax,
+        slevy: discounts,
+        danoveZvyhodneni: benefit,
+        danPoSlevach: final_tax_checked,
+        cistaMzda: net_pay,
+        danovyBonus: tax_bonus,
+        doplatek: supplement,
+        zdravotniPojisteniZamestnavatel: emp_health_insur,
+        socialniPojisteniZamestnavatel: emp_soc_insur,
+    }
 });
 
 expBtn.addEventListener('click', () => {
     inpTab.classList.toggle("input-table");
     window.print();
     inpTab.classList.toggle("input-table");
+});
+
+csvBtn.addEventListener('click', () => {
+    if(csvDataset != null){
+    csvExport(csvDataset);
+    } else {
+        alert("Nejdříve musíte mzdu vypočítat")
+    }
 });
