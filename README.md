@@ -11,6 +11,7 @@
     -   Slevy na invaliditu 1. a 2. stupně (210 Kč/měsíc) a 3. stupně (420 Kč/měsíc)
     -   Držitel průkazu ZTP/P (1 345 Kč/měsíc)
 -   **Daňové zvýhodnění na děti:** Výpočet slevy na děti s progresivní sazbou (1. dítě, 2. dítě, 3. i další děti) včetně automatického výpočtu **daňového bonusu**
+- **Export** - export dat do PDF i CSV
 
 ## Použité technologie
 Tento projekt má dvě verze:
